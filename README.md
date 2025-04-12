@@ -1,3 +1,50 @@
+# PRE INSTALL STUFF READ AND RUN
+```
+sudo pacman -Syyu artix-archlinux-support
+```
+Then add this to the end of ```/etc/pacman.conf```
+```
+# Arch
+[extra]
+Include = /etc/pacman.d/mirrorlist-arch
+
+[multilib]
+Include = /etc/pacman.d/mirrorlist-arch
+```
+```
+sudo pacman -Syyu
+```
+```
+sudo pacman -S turnstile turnstile-dinit dbus-dinit dbus-dinit-user
+```
+Then enable the turnstiled service like this:
+```
+sudo dinitctl enable turnstiled
+```
+Reboot and enable dbus for as root and as a user
+
+```
+sudo dinitctl enable dbus
+```
+```
+dinitctl enable dbus
+```
+
+```
+sudo pacman -R pulseaudio-bluetooth pulseaudio-zeroconf
+sudo pacman -S pipewire pipewire-jack pipewire-pulse wireplumber pipewire-dinit pipewire-jack-dinit pipewire-pulse-dinit wireplumber-dinit
+```
+```
+sudo dinitctl enable pipewire
+dinitctl enable pipewire
+sudo dinitctl enable wireplumber
+dinitctl enable wireplumber
+sudo dinitctl enable pipewire-pulse
+dinitctl enable pipewire-pulse
+```
+
+
+
 
 <div align = center>
   <a href="https://discord.gg/AYbJ9MJez7">
