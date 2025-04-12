@@ -46,6 +46,10 @@ dinitctl enable wireplumber
 sudo dinitctl enable pipewire-pulse
 dinitctl enable pipewire-pulse
 ```
+## NVIDIA FIX(if it happens): Electron/chromium apps: GPU process isn't usable
+```
+sudo pacman -S libva-nvidia-driver
+```
 
 
 
