@@ -174,7 +174,7 @@ main() {                                       # Main function
     timer=${BATTERY_NOTIFY_TIMER:-120}
     notify=${BATTERY_NOTIFY_NOTIFY:-1140}
     interval=${BATTERY_NOTIFY_INTERVAL:-5}
-    execute_critical=${BATTERY_NOTIFY_EXECUTE_CRITICAL:-"systemctl suspend"}
+    execute_critical=${BATTERY_NOTIFY_EXECUTE_CRITICAL:-"dinitctl suspend"}
     execute_low=${BATTERY_NOTIFY_EXECUTE_LOW:-}
     execute_unplug=${BATTERY_NOTIFY_EXECUTE_UNPLUG:-}
     execute_charging=${BATTERY_NOTIFY_EXECUTE_CHARGING:-}

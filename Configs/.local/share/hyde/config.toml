@@ -85,7 +85,7 @@ unplug = 80
 [battery.notify.execute]
 unplug = ""
 low = ""
-critical = "systemctl suspend"
+critical = "dinitctl suspend"
 charging = ""
 discharging = ""
 

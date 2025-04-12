@@ -284,13 +284,13 @@ EOF
 
     while read -r serviceChk; do
 
-        if [[ $(systemctl list-units --all -t service --full --no-legend "${serviceChk}.service" | sed 's/^\s*//g' | cut -f1 -d' ') == "${serviceChk}.service" ]]; then
+        if [[ $(dinitctl list-units --all -t service --full --no-legend "${serviceChk}" | sed 's/^\s*//g' | cut -f1 -d' ') == "${serviceChk}" ]]; then
             print_log -y "[skip] " -b "active " "Service ${serviceChk}"
         else
             print_log -y "start" "Service ${serviceChk}"
             if [ $flg_DryRun -ne 1 ]; then
-                sudo systemctl enable "${serviceChk}.service"
-                sudo systemctl start "${serviceChk}.service"
+                sudo dinitctl enable "${serviceChk}"
+                sudo dinitctl start "${serviceChk}"
             fi
         fi
 
@@ -309,7 +309,7 @@ if [ $flg_Install -eq 1 ] ||
 
     if [[ "$answer" == [Yy] ]]; then
         echo "Rebooting system"
-        systemctl reboot
+        dinitctl reboot
     else
         echo "The system will not reboot"
     fi

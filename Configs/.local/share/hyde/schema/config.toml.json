@@ -246,7 +246,7 @@
                             "type": "string"
                         },
                         "critical": {
-                            "default": "systemctl suspend",
+                            "default": "dinitctl suspend",
                             "description": "Command to execute when battery is critical.",
                             "type": "string"
                         },
@@ -773,7 +773,7 @@
                     "type": "string"
                 },
                 "systemd_share_picker": {
-                    "default": "systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP",
+                    "default": "dinitctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP",
                     "description": "Systemd share picker.",
                     "type": "string"
                 },

@@ -14,28 +14,28 @@
 
 {
     "label": "suspend",
-    "action": "lockscreen.sh & disown && systemctl suspend",
+    "action": "lockscreen.sh & disown && dinitctl suspend",
     "text": "Suspend",
     "keybind": "u"
 }
 
 {
     "label": "shutdown",
-    "action": "systemctl poweroff",
+    "action": "dinitctl poweroff",
     "text": "Shutdown",
     "keybind": "s"
 }
 
 {
     "label": "hibernate",
-    "action": "systemctl hibernate",
+    "action": "dinitctl hibernate",
     "text": "Hibernate",
     "keybind": "h"
 }
 
 {
     "label": "reboot",
-    "action": "systemctl reboot",
+    "action": "dinitctl reboot",
     "text": "Reboot",
     "keybind": "r"
 }

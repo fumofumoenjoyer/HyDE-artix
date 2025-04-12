@@ -28,5 +28,5 @@ done < <(lsblk --noheadings --raw -o TYPE,FSTYPE,UUID,NAME | awk '{if ($1=="part
 
 if [ ! -z "${fstEntry}" ]; then
     echo -e "${fstEntry}\n" | sudo tee -a /etc/fstab
-    sudo systemctl daemon-reload
+    sudo dinitctl daemon-reload
 fi

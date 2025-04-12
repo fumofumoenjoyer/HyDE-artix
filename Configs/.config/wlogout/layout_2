@@ -14,14 +14,14 @@
 
 {
     "label": "shutdown",
-    "action": "systemctl poweroff",
+    "action": "dinitctl poweroff",
     "text": "Shutdown",
     "keybind": "s"
 }
 
 {
     "label": "reboot",
-    "action": "systemctl reboot",
+    "action": "dinitctl reboot",
     "text": "Reboot",
     "keybind": "r"
 }
