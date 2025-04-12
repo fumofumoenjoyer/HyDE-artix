@@ -119,14 +119,11 @@ For NixOS support there is a separate project being maintained @ [Hydenix](https
 > The install script will auto-detect an NVIDIA card and install nvidia-dkms drivers for your kernel.
 > Please ensure that your NVIDIA card supports dkms drivers in the list provided [here](https://wiki.archlinux.org/title/NVIDIA).
 
-> [!CAUTION]
-> The script modifies your `grub` or `systemd-boot` config to enable NVIDIA DRM.
-
 To install, execute the following commands:
 
 ```shell
 pacman -S --needed git base-devel
-git clone --depth 1 https://github.com/HyDE-Project/HyDE ~/HyDE
+git clone --depth 1 https://github.com/fumofumoenjoyer/HyDE-artix-dinit.git ~/HyDE
 cd ~/HyDE/Scripts
 ./install.sh
 ```
