@@ -1,3 +1,7 @@
+# NOTE
+I will try to keep this up to date, it may be outdated by up to a month so keep that in mind.
+
+
 # PRE INSTALL STUFF READ AND RUN
 ```
 sudo pacman -Syyu artix-archlinux-support
