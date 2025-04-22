@@ -35,7 +35,44 @@ get_hashmap() {
     unset wallHash
     unset wallList
     unset skipStrays
-    unset verboseMap
+    unset filetypes
+
+    list_extensions() {
+        # Define supported file extensions
+        supported_files=(
+            "gif"
+            "jpg"
+            "jpeg"
+            "png"
+            "${WALLPAPER_FILETYPES[@]}"
+        )
+        if [ -n "${WALLPAPER_OVERRIDE_FILETYPES}" ]; then
+            supported_files=("${WALLPAPER_OVERRIDE_FILETYPES[@]}")
+        fi
+
+        printf -- "-iname \"*.%s\" -o " "${supported_files[@]}" | sed 's/ -o $//'
+
+    }
+
+    find_wallpapers() {
+        local wallSource="$1"
+
+        if [ -z "${wallSource}" ]; then
+            print_log -err "ERROR: wallSource is empty"
+            return 1
+        fi
+
+        local find_command
+        find_command="find \"${wallSource}\" -type f \\( $(list_extensions) \\) ! -path \"*/logo/*\" -exec \"${hashMech}\" {} +"
+
+        [ "${LOG_LEVEL}" == "debug" ] && print_log -g "DEBUG:" -b "Running command:" "${find_command}"
+
+        tmpfile=$(mktemp)
+        eval "${find_command}" 2>"$tmpfile" | sort -k2
+        error_output=$(<"$tmpfile") && rm -f "$tmpfile"
+        [ -n "${error_output}" ] && print_log -err "ERROR:" -b "found an error: " -r "${error_output}" -y " skipping..."
+
+    }
 
     for wallSource in "$@"; do
 
@@ -54,38 +91,6 @@ get_hashmap() {
         }
 
         [ "${LOG_LEVEL}" == "debug" ] && print_log -g "DEBUG:" -b "wallSource path:" "${wallSource}"
-
-        list_extensions() {
-            # Define supported file extensions
-            supported_files=(
-                "gif"
-                "jpg"
-                "jpeg"
-                "png"
-                "${WALLPAPER_FILETYPES[@]}"
-            )
-            printf -- "-iname *.%s -o " "${supported_files[@]}" | sed 's/ -o $//'
-        }
-
-        find_wallpapers() {
-            local wallSource="$1"
-
-            if [ -z "${wallSource}" ]; then
-                print_log -err "ERROR: wallSource is empty"
-                return 1
-            fi
-
-            local find_command
-            find_command="find \"${wallSource}\" -type f \\( $(list_extensions) \\) ! -path \"*/logo/*\" -exec \"${hashMech}\" {} +"
-
-            [ "${LOG_LEVEL}" == "debug" ] && print_log -g "DEBUG:" -b "Running command:" "${find_command}"
-
-            tmpfile=$(mktemp)
-            eval "${find_command}" 2>"$tmpfile" | sort -k2
-            error_output=$(<"$tmpfile") && rm -f "$tmpfile"
-            [ -n "${error_output}" ] && print_log -err "ERROR:" -b "found an error: " -r "${error_output}" -y " skipping..."
-
-        }
 
         hashMap=$(find_wallpapers "${wallSource}") # Enable debug mode for testing
 
